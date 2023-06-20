@@ -2,6 +2,7 @@
 
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
+import Debug "mo:base/Debug";
 
 
 actor Token {
@@ -28,6 +29,33 @@ return balance;
 public query func symbolReturn() : async Text{
 var symbol : Text = "Abds";
   return symbol;
+
+};
+
+public shared(msg)  func payOut() : async Text {
+
+if(balances.get(msg.caller) == null){
+
+let amount = 10000;
+Debug.print(debug_show(msg.caller)) ;
+balances.put(msg.caller, amount);
+var isSuccess : Text = "Success";
+return isSuccess;
+
+
+
+
+} else {
+  
+return "denied";
+
+};
+
+
+
+
+
+
 
 };
 
