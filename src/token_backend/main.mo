@@ -51,8 +51,29 @@ return "denied";
 
 };
 
+};
 
 
+public shared(msg) func transfer(to: Principal, amount: Nat): async Text {
+
+let fromBalance = await balanceOf(msg.caller);
+
+if(fromBalance >= amount) {
+
+let newBalance: Nat = fromBalance - amount;
+balances.put(msg.caller, newBalance);
+
+let transfereeBalance = await balanceOf(to);
+let transfereeNewBalance: Nat = transfereeBalance + amount;
+
+balances.put(to, transfereeNewBalance);
+
+return "Done!";
+
+} else {
+
+return "Error!";
+}
 
 
 
