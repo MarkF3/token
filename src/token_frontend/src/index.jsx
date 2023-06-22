@@ -26,7 +26,7 @@ const init = async () => {
   }
 
   async function handleAuthenticated(authClient) {
-
+    console.log(authClient.getIdentity());
     const root = ReactDOM.createRoot( document.getElementById("root"));
     root.render(<App />);
 
